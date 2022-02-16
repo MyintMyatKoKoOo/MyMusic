@@ -116,17 +116,18 @@ function control() {
 
 function loopmusiclist() {
     let str = "";
-    musics.forEach((data) => {
-        str += ` <div class="row my-0 p-3 border-bottom">
+    musics.forEach((data,index) => {
+        str += ` <button class="rounded-0 border-0 p-0" onclick="loadMusic(${index})"> <div class="row my-0 p-3 border-bottom">
         <div class="col-2">
           <img class="img-fluid rounded-circle" src="${data.image}
           " alt="">
         </div>
-        <div class="col-9">
-          <h5 class="card-title">${data.name}</h5>
-          <h6 class="card-subtitle">Subtitle</h6> 
+        <div class="col-9 text-start">
+         <h5 class="card-title">${data.name}</h5>
+          <h6 class="card-subtitle">Subtitle</h6>  
+        
         </div>
-      </div>`;
+      </div></button> `;
 
 
     });

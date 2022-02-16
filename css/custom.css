@@ -16,7 +16,6 @@
     border-radius: 50%;
     background-color: #ffffff;
 }
-
 #changeimg{
     border-radius: 50%;    
 }
@@ -45,6 +44,11 @@
     border: 2px solid #e6dada;
     overflow:auto;
     height: 500px;
+    overflow-x: hidden;
+}
+#musiclist button:hover{
+    background-color: #ececec;
+    box-shadow: 1px 1px 2px #e6dada;
 }
 button i{
     color: #e6dada;
