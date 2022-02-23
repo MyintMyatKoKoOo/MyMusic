@@ -109,7 +109,6 @@ function control() {
         }
         musicCurrentTime.innerText = minute + ":" + second;
 
-        // console.log((music.currentTime/60).toString().slice(0,1),(music.currentTime%60).toString());
         if (music.currentTime == music.duration) {
             clearInterval(timeIntervale);
             chgimg.classList.remove("play");
