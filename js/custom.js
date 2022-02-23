@@ -150,4 +150,4 @@ function loopmusiclist() {
     });
     document.querySelector("#musiclist").innerHTML = str;
 }
-fetch("https://github.com/MyintMyatKoKoOo/MyMusic/blob/master/music/countryroad.mp3").then((d)=>{console.log(d});
+
