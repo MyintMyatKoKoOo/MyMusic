@@ -29,7 +29,7 @@ let musics = [{
     }, {
         name: "moonlightshadow",
         path: "music/moonlightshadow.mp3",
-        image: "img/moonlightshadow.jpg",
+        image: "img/moonlightShadow.jpg",
         artist: "Mike Oldfield"
 
     }, {
