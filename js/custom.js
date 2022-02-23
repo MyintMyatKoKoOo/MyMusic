@@ -38,6 +38,12 @@ let musics = [{
         image: "img/sunflower.jpg",
         artist: "Post Malone"
 
+    },
+    {
+        name:"comono",
+        path:"music/comono.mp3",
+        image:"img/comono.jpg",
+        artist:"akon"
     }
 ];
 document.addEventListener("DOMContentLoaded", () => {
