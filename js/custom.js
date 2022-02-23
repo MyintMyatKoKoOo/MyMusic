@@ -9,22 +9,34 @@ let musicCurrentTime = document.querySelector("#currenttime");
 let musicDurationTime = document.querySelector("#durationtime");
 let index = 0;
 let musics = [{
-        name: "first",
-        path: "music/1.mp3",
-        image: "img/img1.jpg",
-        artist: "Justin"
+        name: "countryroad",
+        path: "music/countryroad.mp3",
+        image: "img/countryroad.jpg",
+        artist: "Jhon Denver"
     },
     {
-        name: "second",
-        path: "music/2.mp3",
-        image: "img/img2.jpg",
-        artist: "CardiB"
+        name: "hotarubi",
+        path: "music/hotarubi.mp3",
+        image: "img/hotarubi.jpg",
+        artist: "Wagakki Band"
 
     }, {
-        name: "third",
-        path: "music/3.mp3",
-        image: "img/img3.jpg",
-        artist: "Tokyo Band"
+        name: "lemon",
+        path: "music/lemon.mp3",
+        image: "img/lemon.jpg",
+        artist: "Kenshi Yonezu"
+
+    }, {
+        name: "moonlightshadow",
+        path: "music/moonlightshadow.mp3",
+        image: "img/moonlightshadow.jpg",
+        artist: "Mike Oldfield"
+
+    }, {
+        name: "sunflower",
+        path: "music/sunflower.mp3",
+        image: "img/sunflower.jpg",
+        artist: "Post Malone"
 
     }
 ];
@@ -124,7 +136,7 @@ function loopmusiclist() {
         </div>
         <div class="col-9 text-start">
          <h5 class="card-title">${data.name}</h5>
-          <h6 class="card-subtitle">Subtitle</h6>  
+          <h6 class="card-subtitle">${data.artist}</h6>  
         
         </div>
       </div></button> `;
