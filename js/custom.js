@@ -40,10 +40,10 @@ let musics = [{
 
     },
     {
-        name:"comono",
-        path:"music/comono.mp3",
-        image:"img/comono.jpg",
-        artist:"akon"
+        name: "comono",
+        path: "music/comono.mp3",
+        image: "img/comono.jpg",
+        artist: "akon"
     }
 ];
 document.addEventListener("DOMContentLoaded", () => {
@@ -91,35 +91,82 @@ function prev() {
 loadMusic(index);
 
 function control() {
-    if (btnPlayIcon.classList.contains("fa-play-circle")) {
-        btnPlayIcon.classList.remove("fa-play-circle");
-        btnPlayIcon.classList.add("fa-pause-circle");
-        chgimg.classList.add("play");
-        music.play();
-    } else {
-        btnPlayIcon.classList.remove("fa-pause-circle");
-        btnPlayIcon.classList.add("fa-play-circle");
-        chgimg.classList.remove("play");
-        music.pause();
-    }
-    let timeIntervale = setInterval(function() {
-        playRange.value = music.currentTime / music.duration * 100;
-        //    musicCurrentTime.innerText=(music.currentTime/60).toString().slice(0,1)+":"+(music.currentTime%60).toString().slice(0,2);
-        let minute = ((music.currentTime / 60).toString().slice(0, 2)).replace(".", "");
-        let second = ((music.currentTime % 60).toString().slice(0, 2)).replace(".", "");
-        if (second < 10) {
-            second = "0" + second;
-        }
-        if (minute < 10) {
-            minute = "0" + minute;
-        }
-        musicCurrentTime.innerText = minute + ":" + second;
 
-        if (music.currentTime == music.duration) {
-            clearInterval(timeIntervale);
-            chgimg.classList.remove("play");
-        }
-    }, 1000);
+    let Dutime = new Promise((reslove, reject) => {
+            return reslove(getmusicDurationTime());
+        }).then(dt => {
+            musicDurationTime.innerText = dt;
+            if (btnPlayIcon.classList.contains("fa-play-circle")) {
+                btnPlayIcon.classList.remove("fa-play-circle");
+                btnPlayIcon.classList.add("fa-pause-circle");
+                chgimg.classList.add("play");
+                music.play();
+            } else {
+                btnPlayIcon.classList.remove("fa-pause-circle");
+                btnPlayIcon.classList.add("fa-play-circle");
+                chgimg.classList.remove("play");
+                music.pause();
+            }
+            let timeIntervale = setInterval(function() {
+                playRange.value = music.currentTime / music.duration * 100;
+                //    musicCurrentTime.innerText=(music.currentTime/60).toString().slice(0,1)+":"+(music.currentTime%60).toString().slice(0,2);
+                let minute = ((music.currentTime / 60).toString().slice(0, 2)).replace(".", "");
+                let second = ((music.currentTime % 60).toString().slice(0, 2)).replace(".", "");
+                if (second < 10) {
+                    second = "0" + second;
+                }
+                if (minute < 10) {
+                    minute = "0" + minute;
+                }
+                musicCurrentTime.innerText = minute + ":" + second;
+
+                if (music.currentTime == music.duration) {
+                    clearInterval(timeIntervale);
+                    chgimg.classList.remove("play");
+                }
+            }, 1000);
+        })
+        // if (btnPlayIcon.classList.contains("fa-play-circle")) {
+        //     btnPlayIcon.classList.remove("fa-play-circle");
+        //     btnPlayIcon.classList.add("fa-pause-circle");
+        //     chgimg.classList.add("play");
+        //     music.play();
+        // } else {
+        //     btnPlayIcon.classList.remove("fa-pause-circle");
+        //     btnPlayIcon.classList.add("fa-play-circle");
+        //     chgimg.classList.remove("play");
+        //     music.pause();
+        // }
+        // let timeIntervale = setInterval(function() {
+        //     playRange.value = music.currentTime / music.duration * 100;
+        //     //    musicCurrentTime.innerText=(music.currentTime/60).toString().slice(0,1)+":"+(music.currentTime%60).toString().slice(0,2);
+        //     let minute = ((music.currentTime / 60).toString().slice(0, 2)).replace(".", "");
+        //     let second = ((music.currentTime % 60).toString().slice(0, 2)).replace(".", "");
+        //     if (second < 10) {
+        //         second = "0" + second;
+        //     }
+        //     if (minute < 10) {
+        //         minute = "0" + minute;
+        //     }
+        //     musicCurrentTime.innerText = minute + ":" + second;
+
+    //     if (music.currentTime == music.duration) {
+    //         clearInterval(timeIntervale);
+    //         chgimg.classList.remove("play");
+    //     }
+    // }, 1000);
+    // let durationMinute = (music.duration / 60).toString().slice(0, 2).replace(".", "");
+    // let durationSecond = (music.duration % 60).toString().slice(0, 2).replace(".", "");
+    // if (durationMinute < 10) {
+    //     durationMinute = "0" + durationMinute;
+    // }
+    // if (durationSecond < 10) {
+    //     durationSecond = "0" + durationSecond;
+    // }
+    // musicDurationTime.innerText = durationMinute + ":" + durationSecond;
+}
+
+function getmusicDurationTime() {
     let durationMinute = (music.duration / 60).toString().slice(0, 2).replace(".", "");
     let durationSecond = (music.duration % 60).toString().slice(0, 2).replace(".", "");
     if (durationMinute < 10) {
@@ -128,12 +175,12 @@ function control() {
     if (durationSecond < 10) {
         durationSecond = "0" + durationSecond;
     }
-    musicDurationTime.innerText = durationMinute + ":" + durationSecond;
+    return durationMinute + ":" + durationSecond;
 }
 
 function loopmusiclist() {
     let str = "";
-    musics.forEach((data,index) => {
+    musics.forEach((data, index) => {
         str += ` <button class="rounded-0 border-0 p-0" onclick="loadMusic(${index})"> <div class="row my-0 p-3 border-bottom">
         <div class="col-2">
           <img class="img-fluid rounded-circle" src="${data.image}
@@ -150,4 +197,3 @@ function loopmusiclist() {
     });
     document.querySelector("#musiclist").innerHTML = str;
 }
-
