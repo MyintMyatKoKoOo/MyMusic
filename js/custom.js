@@ -60,15 +60,23 @@ function playingRange() {
 }
 
 function loadMusic(index) {
-    music.src = musics[index].path;
-    chgimg.src = musics[index].image;
+    document.querySelector("#loading").classList.remove("loadingClose");
+    document.querySelector("#loading").classList.add("loading");
+    setTimeout(function() {
+        music.src = musics[index].path;
+        chgimg.src = musics[index].image;
 
-    if (!btnPlayIcon.classList.contains("fa-play-circle")) {
-        btnPlayIcon.classList.remove("fa-pause-circle");
-        btnPlayIcon.classList.add("fa-play-circle");
-    }
-    chgimg.classList.remove("play");
-    document.querySelector("#musicname").innerText = musics[index].name;
+        if (!btnPlayIcon.classList.contains("fa-play-circle")) {
+            btnPlayIcon.classList.remove("fa-pause-circle");
+            btnPlayIcon.classList.add("fa-play-circle");
+        }
+        chgimg.classList.remove("play");
+        document.querySelector("#musicname").innerText = musics[index].name;
+        document.querySelector("#loading").classList.remove("loading");
+        document.querySelector("#loading").classList.add("loadingClose");
+    }, 1000);
+
+
 }
 
 function next() {
