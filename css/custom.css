@@ -1,70 +1,85 @@
-
-#musicbg{
+#musicbg {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    background: linear-gradient(to bottom, #e6dada, #274046); 
+    background: linear-gradient(to bottom, #e6dada, #5f5f8e);
 }
-#imagewarpper{
+
+#imagewarpper {
     position: relative;
 }
-#imagewarpper>div{
-    position:relative;
-    top:-125px;
+
+#imagewarpper>div {
+    position: relative;
+    top: -125px;
     right: -110px;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     background-color: #ffffff;
 }
-#changeimg{
+
+#changeimg {
     width: 250px;
     height: 250px;
-    border-radius: 50%;    
+    border-radius: 50%;
 }
-#changeimg.play{
 
- animation: rotate 10s linear infinite;
+#changeimg.play {
+    animation: rotate 10s linear infinite;
 }
+
 @keyframes rotate {
-    from{transform: rotate(0deg);}
-    to{transform: rotate(360deg);}
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
-#musicname{
+
+#musicname {
     color: #e6dada;
     letter-spacing: 1px;
 }
-#musicname::first-letter{
- text-transform: uppercase;
- color: #274046;
- 
+
+#musicname::first-letter {
+    text-transform: uppercase;
+    color: #274046;
 }
-#playrange::-webkit-slider-thumb{
+
+#playrange::-webkit-slider-thumb {
     background-color: black;
 }
-#musiclist{
+
+#musiclist {
     color: #274046;
     border: 2px solid #e6dada;
-    overflow:auto;
+    overflow: auto;
     height: 500px;
     overflow-x: hidden;
 }
-#musiclist img{
+
+#musiclist img {
     width: 70px;
     height: 70px;
 }
-#musiclist button:hover{
+
+#musiclist button:hover {
     background-color: #ececec;
     box-shadow: 1px 1px 2px #e6dada;
 }
-button i{
+
+button i {
     color: #e6dada;
     font-size: 14px;
 }
-#volume::-webkit-slider-runnable-track{
-  background-image:linear-gradient(gray,white) ;
+
+#volume::-webkit-slider-runnable-track {
+    background-image: linear-gradient(gray, white);
 }
+
 @media only screen and (max-width: 600px) {
-   #musicbg{
-       border-radius: 0px;
-   }
-  }
+    #musicbg {
+        border-radius: 0px;
+    }
+}
