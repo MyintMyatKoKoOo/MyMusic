@@ -62,12 +62,17 @@ function playingRange() {
 function loadMusic(index) {
     music.src = musics[index].path;
     chgimg.src = musics[index].image;
-    if (!btnPlayIcon.classList.contains("fa-play-circle")) {
-        btnPlayIcon.classList.remove("fa-pause-circle");
-        btnPlayIcon.classList.add("fa-play-circle");
-    }
-    chgimg.classList.remove("play");
-    document.querySelector("#musicname").innerText = musics[index].name;
+    new Promise((reslove, reject) => {
+        return reslove(getmusicDurationTime());
+    }).then(dt => {
+        musicDurationTime.innerText = dt;
+        if (!btnPlayIcon.classList.contains("fa-play-circle")) {
+            btnPlayIcon.classList.remove("fa-pause-circle");
+            btnPlayIcon.classList.add("fa-play-circle");
+        }
+        chgimg.classList.remove("play");
+        document.querySelector("#musicname").innerText = musics[index].name;
+    });
 }
 
 function next() {
@@ -92,63 +97,58 @@ loadMusic(index);
 
 function control() {
 
-    let Dutime = new Promise((reslove, reject) => {
-            return reslove(getmusicDurationTime());
-        }).then(dt => {
-            musicDurationTime.innerText = dt;
-            if (btnPlayIcon.classList.contains("fa-play-circle")) {
-                btnPlayIcon.classList.remove("fa-play-circle");
-                btnPlayIcon.classList.add("fa-pause-circle");
-                chgimg.classList.add("play");
-                music.play();
-            } else {
-                btnPlayIcon.classList.remove("fa-pause-circle");
-                btnPlayIcon.classList.add("fa-play-circle");
-                chgimg.classList.remove("play");
-                music.pause();
-            }
-            let timeIntervale = setInterval(function() {
-                playRange.value = music.currentTime / music.duration * 100;
-                //    musicCurrentTime.innerText=(music.currentTime/60).toString().slice(0,1)+":"+(music.currentTime%60).toString().slice(0,2);
-                let minute = ((music.currentTime / 60).toString().slice(0, 2)).replace(".", "");
-                let second = ((music.currentTime % 60).toString().slice(0, 2)).replace(".", "");
-                if (second < 10) {
-                    second = "0" + second;
-                }
-                if (minute < 10) {
-                    minute = "0" + minute;
-                }
-                musicCurrentTime.innerText = minute + ":" + second;
+    if (btnPlayIcon.classList.contains("fa-play-circle")) {
+        btnPlayIcon.classList.remove("fa-play-circle");
+        btnPlayIcon.classList.add("fa-pause-circle");
+        chgimg.classList.add("play");
+        music.play();
+    } else {
+        btnPlayIcon.classList.remove("fa-pause-circle");
+        btnPlayIcon.classList.add("fa-play-circle");
+        chgimg.classList.remove("play");
+        music.pause();
+    }
+    let timeIntervale = setInterval(function() {
+        playRange.value = music.currentTime / music.duration * 100;
+        //    musicCurrentTime.innerText=(music.currentTime/60).toString().slice(0,1)+":"+(music.currentTime%60).toString().slice(0,2);
+        let minute = ((music.currentTime / 60).toString().slice(0, 2)).replace(".", "");
+        let second = ((music.currentTime % 60).toString().slice(0, 2)).replace(".", "");
+        if (second < 10) {
+            second = "0" + second;
+        }
+        if (minute < 10) {
+            minute = "0" + minute;
+        }
+        musicCurrentTime.innerText = minute + ":" + second;
 
-                if (music.currentTime == music.duration) {
-                    clearInterval(timeIntervale);
-                    chgimg.classList.remove("play");
-                }
-            }, 1000);
-        })
-        // if (btnPlayIcon.classList.contains("fa-play-circle")) {
-        //     btnPlayIcon.classList.remove("fa-play-circle");
-        //     btnPlayIcon.classList.add("fa-pause-circle");
-        //     chgimg.classList.add("play");
-        //     music.play();
-        // } else {
-        //     btnPlayIcon.classList.remove("fa-pause-circle");
-        //     btnPlayIcon.classList.add("fa-play-circle");
-        //     chgimg.classList.remove("play");
-        //     music.pause();
-        // }
-        // let timeIntervale = setInterval(function() {
-        //     playRange.value = music.currentTime / music.duration * 100;
-        //     //    musicCurrentTime.innerText=(music.currentTime/60).toString().slice(0,1)+":"+(music.currentTime%60).toString().slice(0,2);
-        //     let minute = ((music.currentTime / 60).toString().slice(0, 2)).replace(".", "");
-        //     let second = ((music.currentTime % 60).toString().slice(0, 2)).replace(".", "");
-        //     if (second < 10) {
-        //         second = "0" + second;
-        //     }
-        //     if (minute < 10) {
-        //         minute = "0" + minute;
-        //     }
-        //     musicCurrentTime.innerText = minute + ":" + second;
+        if (music.currentTime == music.duration) {
+            clearInterval(timeIntervale);
+            chgimg.classList.remove("play");
+        }
+    }, 1000);
+    // if (btnPlayIcon.classList.contains("fa-play-circle")) {
+    //     btnPlayIcon.classList.remove("fa-play-circle");
+    //     btnPlayIcon.classList.add("fa-pause-circle");
+    //     chgimg.classList.add("play");
+    //     music.play();
+    // } else {
+    //     btnPlayIcon.classList.remove("fa-pause-circle");
+    //     btnPlayIcon.classList.add("fa-play-circle");
+    //     chgimg.classList.remove("play");
+    //     music.pause();
+    // }
+    // let timeIntervale = setInterval(function() {
+    //     playRange.value = music.currentTime / music.duration * 100;
+    //     //    musicCurrentTime.innerText=(music.currentTime/60).toString().slice(0,1)+":"+(music.currentTime%60).toString().slice(0,2);
+    //     let minute = ((music.currentTime / 60).toString().slice(0, 2)).replace(".", "");
+    //     let second = ((music.currentTime % 60).toString().slice(0, 2)).replace(".", "");
+    //     if (second < 10) {
+    //         second = "0" + second;
+    //     }
+    //     if (minute < 10) {
+    //         minute = "0" + minute;
+    //     }
+    //     musicCurrentTime.innerText = minute + ":" + second;
 
     //     if (music.currentTime == music.duration) {
     //         clearInterval(timeIntervale);
